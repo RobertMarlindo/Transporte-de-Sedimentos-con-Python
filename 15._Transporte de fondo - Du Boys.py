@@ -1,7 +1,7 @@
 #DESARROLLADORES: Ing. Ramirez Quispe, Robert Marlindo
-#               : Ing. Córdova Julca, Guillermo Arturo
-# PROGRAMA      : Transporte de fondo - Du Boys
-# LENGUAJE      : Python
+//              : Ing. Córdova Julca, Guillermo Arturo
+//PROGRAMA      : Transporte de fondo - Du Boys
+//LENGUAJE      : Python
 #datos
 y=2.7003    #Tirante m
 B=200       #Ancho m
