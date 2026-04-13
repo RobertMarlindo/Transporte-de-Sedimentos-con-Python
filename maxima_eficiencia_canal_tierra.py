@@ -1,31 +1,31 @@
-#DESARROLLADORES : Ing. Ramirez Quispe, Robert Marlindo
-#                : Ing. Córdova Julca, Guillermo Arturo
+//DESARROLLADORES : Ing. Ramirez Quispe, Robert Marlindo
+//                : Ing. Córdova Julca, Guillermo Arturo
 // PROGRAMA      : Diseña canal  Máxima eficiencia hidráulica
 //               : Riesgo Zanke
 //               : Método de Newton
 // LENGUAJE      : Python
 from math import log10,sqrt,atan,pi,tan,cos,log,exp
-#datos esfuerzo cortante
-#=======
-D50=0.045       # diámetro de la partícula representativa en metros
-D90=0.090       # diámetro D90
-ps=2650         # peso especifico del sólido kg/m3
-s=0.0015        # pendiente del fondo del río
-g=9.807         # gravedad m/s2
-T=20            # temperatura
-R=2             # Zanke % confiabilidad
-#calcula función de T O ingresar peso especifico del agua kg/m3
+//datos esfuerzo cortante
+//=======
+D50=0.045       // diámetro de la partícula representativa en metros
+D90=0.090       // diámetro D90
+ps=2650         // peso especifico del sólido kg/m3
+s=0.0015        // pendiente del fondo del río
+g=9.807         // gravedad m/s2
+T=20            // temperatura
+R=2             // Zanke % confiabilidad
+//calcula función de T O ingresar peso especifico del agua kg/m3
 p=1000.*(1.-(T+288.941)*pow(T-3.986,2.)/(508929.2*(T+68.13))) 
-u=(1.14-0.031*(T-15)+0.00068*(T-15)**2)*10**-6  # calcula función de T O viscosidad cinemática del fluido m2/s
-# dato para canal
-fi=37       # ángulo de reposo de la partícula
-z=3         # talud del canal 2H:1V la parte de vertical
-Q=50        # caudal en m3/s
-F=0.85      # 0.75 ?.y.S depende de la talud para canal
-#calculo de parámetro de shiedls
-#==== diagramas original =========
-pr=(ps-p)/p #densidad ro
-D=(pr*g/u**2)**(1/3)*D50 #D*
+u=(1.14-0.031*(T-15)+0.00068*(T-15)**2)*10**-6  // calcula función de T O viscosidad cinemática del fluido m2/s
+// dato para canal
+fi=37       // ángulo de reposo de la partícula
+z=3         // talud del canal 2H:1V la parte de vertical
+Q=50        // caudal en m3/s
+F=0.85      // 0.75 ?.y.S depende de la talud para canal
+//calculo de parámetro de shiedls
+//==== diagramas original =========
+pr=(ps-p)/p //densidad ro
+D=(pr*g/u**2)**(1/3)*D50 //D*
 if D>1 and D<=4:
     te=.24*D**(-1)
 elif D>4 and D<=10:
@@ -38,17 +38,17 @@ elif D>150:
     te=.055
 nom=["Shields","Shields y Zanke riesgo(R)"]
 for J in range(2):   
-    Toc=te*(ps-p)*D50 # esfuerzo cortante critico
-    y=Toc/(p*s) # altura del nivel de agua
-    k=2*D90 # rugosidad del río
-    c=18*log10(12*y/k) #c de chezy
+    Toc=te*(ps-p)*D50 // esfuerzo cortante critico
+    y=Toc/(p*s) // altura del nivel de agua
+    k=2*D90 // rugosidad del río
+    c=18*log10(12*y/k) //c de chezy
     v=c*sqrt(y*s)
-    q=v*y #q=Q/B=(v*A)/B=(v*B*y)/B=v*y caudal específico
-    #======================
-    # empleando la fórmula de Zanke 2%
-    # método de biseccion en el rango de [0.000000001,te]
-    a=0.000000001 # es mínimo valor que va tomar
-    b=te  # el limite superior se pone porque sera menor a ello
+    q=v*y //q=Q/B=(v*A)/B=(v*B*y)/B=v*y caudal específico
+    //======================
+    // empleando la fórmula de Zanke 2%
+    // método de biseccion en el rango de [0.000000001,te]
+    a=0.000000001 // es mínimo valor que va tomar
+    b=te  // el limite superior se pone porque sera menor a ello
     for I in range(100):
         c=(a+b)/2
         fa=R/100-(10*(a/te)**-9+1)**-1
@@ -60,7 +60,7 @@ for J in range(2):
             b=c
         if abs(fc)<.00001:
             break
-        #print(I+1,a,b,c)
+        //print(I+1,a,b,c)
     print("====================")
     print(nom[J])
     print("====================")
@@ -73,12 +73,12 @@ for J in range(2):
     print("chezyo c =",c)
     print("Velocidad del fluido =",v,"m/s")
     print("caudal específico =",q,"m3/s/m")
-    te=c #?cr cambia con Zanke riesgo(R)
-# esfuerzo cortante en la orillas
+    te=c //?cr cambia con Zanke riesgo(R)
+// esfuerzo cortante en la orillas
 alf=atan(1/z)
 ka=cos(alf)*(1-tan(alf)**2/tan(fi*180/pi)**2)**.5
 Toc_orr=ka*Toc
-yo=Toc_orr/(F*p*s) #altura del nivel de agua de acuerd a orrillas
+yo=Toc_orr/(F*p*s) //altura del nivel de agua de acuerd a orrillas
 print("===============")
 print("talud esfuerzo cortante Toc")
 print("===============")
@@ -86,12 +86,12 @@ print("inclinación de talud alfa = ",alf*180/pi)
 print("ka = ",ka)
 print("Toc orrillas = ",Toc_orr)
 print("y acuerdo a orillas = ",yo)
-#dimensionamiento de canal
+//dimensionamiento de canal
 k=2*D90
-#=====================
-#tirante proponer y te encuentra la base
-#=====================
-#Newthon para calcular tirante
+//=====================
+//tirante proponer y te encuentra la base
+//=====================
+//Newthon para calcular tirante
 AA=6/k
 BB=18*sqrt(s/2)*(2*sqrt(1+z**2)-z)
 y=0.99
@@ -103,13 +103,13 @@ for I in range(40):
     yf=y-fx/dfx
     if abs(y-yf)<.00001:
         break    
-#=====================
+//=====================
 y=yf   
 B=2*y*(sqrt(1+z**2)-z)
 A=B*y+z*y**2
 P=B+2*y*(1+z**2)**.5
 R=A/P
-c=18*log10(12*R/k) #c de chezy
+c=18*log10(12*R/k) //c de chezy
 v=c*sqrt(R*s)    
 Q=A*v
 print("===============")
