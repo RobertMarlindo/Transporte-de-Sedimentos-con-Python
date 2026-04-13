@@ -1,31 +1,31 @@
-#DESARROLLADORES: Ing. Ramirez Quispe, Robert Marlindo
-#               : Ing. Córdova Julca, Guillermo Arturo
-# PROGRAMA      : Tirante normal - Engelund y Hansen
-# LENGUAJE      : Python
+//DESARROLLADORES: Ing. Ramirez Quispe, Robert Marlindo
+//               : Ing. Córdova Julca, Guillermo Arturo
+// PROGRAMA      : Tirante normal - Engelund y Hansen
+// LENGUAJE      : Python
 from math import log10,log,sqrt,exp
 print("============================")
 print("Formas de fondo")
 print("============================")
-#datos
-#=======
-Q=579.69      #Caudal que transorta, solo sirve para validad al final
-y=2.61076     #Tirante del agua m calculado con RCanales
-B=200         #base del canal
-S=0.0002      #pendiente del fondo del canal
-D50=0.35/1000 #diametro particula d50 m(metros) para micras multipicar 10^6
-D90=0.90/1000 #diametro particula d90 m(metros)
-ps=2650       #peso espeficifico del sólido kg/m3
-Te=20         #temperatura del agua
-g=9.807       #gravedad m/s2
-R=(B*y)/(B+2*y)    #se considera radio hidraulico que el tirante en canal ancho
+//datos
+//=======
+Q=579.69      //Caudal que transorta, solo sirve para validad al final
+y=2.61076     //Tirante del agua m calculado con RCanales
+B=200         //base del canal
+S=0.0002      //pendiente del fondo del canal
+D50=0.35/1000 //diametro particula d50 m(metros) para micras multipicar 10^6
+D90=0.90/1000 //diametro particula d90 m(metros)
+ps=2650       //peso espeficifico del sólido kg/m3
+Te=20         //temperatura del agua
+g=9.807       //gravedad m/s2
+R=(B*y)/(B+2*y)    //se considera radio hidraulico que el tirante en canal ancho
 u=(1.14-0.031*(Te-15)+0.00068*(Te-15)**2)*10**-6   fluido m2/s
 p=1000.*(1.-(Te+288.941)*pow(Te-3.986,2.)/(508929.2*(Te+68.13)))
 s=ps/p
-pr=(ps-p)/p    #densidad ro
+pr=(ps-p)/p    //densidad ro
 v=Q/(B*y)  
-#calculo
-#=======    
-vc=sqrt(g*R*S) #velocidad de corte
+//calculo
+//=======    
+vc=sqrt(g*R*S) //velocidad de corte
 ?=round(vc**2/((s-1)*g*D50),1)
 print("Desnidad del agua ",p,"kg/m3")
 print("Velocidad de corte vc=",vc,"m/s")
